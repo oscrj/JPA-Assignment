@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class CommandLine implements CommandLineRunner {
 
-
     @Override
     @Transactional
     public void run(String... args) throws Exception {

@@ -23,6 +23,8 @@ public class RecipeInstruction {
         this.instructions = instructions;
     }
 
+    RecipeInstruction() {}
+
     public String getInstructionId() {
         return instructionId;
     }

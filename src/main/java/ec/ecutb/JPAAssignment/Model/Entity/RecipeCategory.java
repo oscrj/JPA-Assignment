@@ -1,6 +1,7 @@
 package ec.ecutb.JPAAssignment.Model.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +13,11 @@ public class RecipeCategory {
     private int recipeCategoryId;
     private String category;
 
-    @ManyToMany //With recipe.
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinTable(name = "category_recipe",
+            joinColumns = @JoinColumn(name = "recipe_category_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     List<Recipe> recipeList;
 
     public RecipeCategory(int recipeCategoryId, String category, List<Recipe> recipeList) {
@@ -24,6 +29,8 @@ public class RecipeCategory {
     public RecipeCategory(String category) {
         this(0, category, null);
     }
+
+    RecipeCategory() {}
 
     public int getRecipeCategoryId() {
         return recipeCategoryId;
@@ -42,7 +49,23 @@ public class RecipeCategory {
     }
 
     public void setRecipeList(List<Recipe> recipeList) {
+        if(this.recipeList == null) this.recipeList = new ArrayList<>();
+        if(recipeList == null){
+            recipeList.forEach(recipe -> recipe.setRecipeCategoryList(null));
+        }else {
+            recipeList.forEach(this::addRecipe);
+        }
         this.recipeList = recipeList;
+    }
+
+
+    public boolean addRecipe(Recipe recipe){
+        if(recipeList == null) recipeList = new ArrayList<>();
+        if(recipe == null) return false;
+
+        recipeList.add(recipe);
+
+        return true;
     }
 
     @Override
