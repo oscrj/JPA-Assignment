@@ -1,9 +1,6 @@
 package ec.ecutb.JPAAssignment.Model.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,23 +12,24 @@ public class Recipe {
     private int recipeId;
     private String recipeName;
 
-    private List<RecipeIngredient> recipeIngredients;
+    private List<RecipeIngredient> recipeIngredientList;
 
     private RecipeInstruction instruction;
 
-    private List<RecipeCategory> categories;
 
-    public Recipe(int recipeId, String recipeName, List<RecipeIngredient> recipeIngredients, RecipeInstruction instruction, List<RecipeCategory> categories) {
+    @ManyToMany //With recipeCategory.
+    private List<RecipeCategory> recipeCategoryList;
+
+    public Recipe(int recipeId, String recipeName, List<RecipeIngredient> recipeIngredientList, RecipeInstruction instruction, List<RecipeCategory> recipeCategoryList) {
         this.recipeId = recipeId;
         this.recipeName = recipeName;
-        this.recipeIngredients = recipeIngredients;
+        this.recipeIngredientList = recipeIngredientList;
         this.instruction = instruction;
-        this.categories = categories;
+        this.recipeCategoryList = recipeCategoryList;
     }
 
-    public Recipe(String recipeName, RecipeInstruction instruction) {
-        this.recipeName = recipeName;
-        this.instruction = instruction;
+    public Recipe(String recipeName, List<RecipeIngredient> recipeIngredientList, RecipeInstruction instruction, List<RecipeCategory> recipeCategoryList) {
+        this(0, recipeName, null, null, null);
     }
 
     public Recipe() {}
@@ -48,12 +46,12 @@ public class Recipe {
         this.recipeName = recipeName;
     }
 
-    public List<RecipeIngredient> getRecipeIngredients() {
-        return recipeIngredients;
+    public List<RecipeIngredient> getRecipeIngredientList() {
+        return recipeIngredientList;
     }
 
-    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
-        this.recipeIngredients = recipeIngredients;
+    public void setRecipeIngredientList(List<RecipeIngredient> recipeIngredientList) {
+        this.recipeIngredientList = recipeIngredientList;
     }
 
     public RecipeInstruction getInstruction() {
@@ -64,12 +62,12 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public List<RecipeCategory> getCategories() {
-        return categories;
+    public List<RecipeCategory> getRecipeCategoryList() {
+        return recipeCategoryList;
     }
 
-    public void setCategories(List<RecipeCategory> categories) {
-        this.categories = categories;
+    public void setRecipeCategoryList(List<RecipeCategory> recipeCategoryList) {
+        this.recipeCategoryList = recipeCategoryList;
     }
 
     @Override

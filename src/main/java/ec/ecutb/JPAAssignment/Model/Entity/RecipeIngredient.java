@@ -23,8 +23,7 @@ public class RecipeIngredient {
 
     private Recipe recipe;
 
-    public RecipeIngredient(String recipeIngredientId, Ingredient ingredient, Double amount, Measurement measurement, Recipe recipe) {
-        this.recipeIngredientId = recipeIngredientId;
+    public RecipeIngredient(Ingredient ingredient, Double amount, Measurement measurement, Recipe recipe) {
         this.ingredient = ingredient;
         this.amount = amount;
         this.measurement = measurement;
@@ -32,9 +31,7 @@ public class RecipeIngredient {
     }
 
     public RecipeIngredient(Ingredient ingredient, Double amount, Measurement measurement) {
-        this.ingredient = ingredient;
-        this.amount = amount;
-        this.measurement = measurement;
+        this(ingredient, amount, measurement, null);
     }
 
     RecipeIngredient() {}
