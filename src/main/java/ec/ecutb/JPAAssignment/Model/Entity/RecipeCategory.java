@@ -58,7 +58,6 @@ public class RecipeCategory {
         this.recipeList = recipeList;
     }
 
-
     public boolean addRecipe(Recipe recipe){
         if(recipeList == null) recipeList = new ArrayList<>();
         if(recipe == null) return false;
