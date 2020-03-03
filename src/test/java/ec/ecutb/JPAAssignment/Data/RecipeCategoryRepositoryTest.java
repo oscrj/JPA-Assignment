@@ -1,4 +1,4 @@
-package Data;
+package ec.ecutb.JPAAssignment.Data;
 
 import ec.ecutb.JPAAssignment.Data.RecipeCategoryRepository;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,20 +1,18 @@
-package Data;
+package ec.ecutb.JPAAssignment.Data;
 
-import ec.ecutb.JPAAssignment.Data.RecipeInstructionRepository;
+import ec.ecutb.JPAAssignment.Data.RecipeIngredientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-public class RecipeInstructionRepositoryTest {
+public class RecipeIngredientRepositoryTest {
 
     @Autowired
-    private RecipeInstructionRepository instructionRepository;
+    private RecipeIngredientRepository ingredientRepository;
 
     @BeforeEach
     void setUp(){
 
     }
-
-
 }
