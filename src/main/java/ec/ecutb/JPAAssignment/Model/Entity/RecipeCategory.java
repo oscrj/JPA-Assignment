@@ -72,7 +72,7 @@ public class RecipeCategory {
         if(recipe == null) return false;
 
         recipeList.remove(recipe);
-        recipe.setRecipeCategoryList(null);
+        //  recipe.setRecipeCategoryList(null);
         return true;
     }
 

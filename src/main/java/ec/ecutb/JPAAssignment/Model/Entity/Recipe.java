@@ -18,7 +18,7 @@ public class Recipe {
             orphanRemoval = true,
             mappedBy = "recipe"
     )
-    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
+    private List<RecipeIngredient> recipeIngredientList;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "instruction_id")

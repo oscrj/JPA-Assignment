@@ -22,7 +22,6 @@ public class RecipeTest {
         testCategory = new RecipeCategory("Mexican");
     }
 
-
     @Test
     public void check_if_recipeIngredients_was_added(){
         boolean isAdded = testObject.addRecipeIngredients(testIngredients);
@@ -65,6 +64,7 @@ public class RecipeTest {
 
     @Test
     public void check_if_category_was_removed(){
+        testObject.addRecipeCategory(testCategory);
         boolean isRemoved = testObject.removeRecipeCategory(testCategory);
         assertTrue(isRemoved);
     }

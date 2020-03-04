@@ -34,7 +34,7 @@ public class RecipeRepositoryTest {
     }
 
     @Test
-    public void find_ingredients_by_string_containing_part_of_name(){
+    public void find_recipes_by_string_containing_part_of_name(){
         List<Recipe> result = recipeRepository.findByRecipeNameContainingIgnoreCase("burg");
 
         assertNotNull(result);
