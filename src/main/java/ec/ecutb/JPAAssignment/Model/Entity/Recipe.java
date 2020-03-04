@@ -18,7 +18,7 @@ public class Recipe {
             orphanRemoval = true,
             mappedBy = "recipe"
     )
-    private List<RecipeIngredient> recipeIngredientList;
+    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "instruction_id")
@@ -100,7 +100,7 @@ public class Recipe {
 
     //  Adds recipe ingredients to recipe.
     public boolean addRecipeIngredients(RecipeIngredient ingredient){
-        if(recipeIngredientList == null) recipeIngredientList = new ArrayList<>();
+        if(this.recipeIngredientList == null) recipeIngredientList = new ArrayList<>();
         if(ingredient == null) return false;
         if(recipeIngredientList.contains(ingredient)) return false;
 
@@ -111,7 +111,7 @@ public class Recipe {
 
     // Remove recipe ingredients from recipe.
     public boolean removeRecipeIngredients(RecipeIngredient ingredient){
-        if(recipeIngredientList == null) recipeIngredientList = new ArrayList<>();
+        if(this.recipeIngredientList == null) recipeIngredientList = new ArrayList<>();
         if(ingredient == null) return false;
 
         recipeIngredientList.remove(ingredient);
@@ -125,6 +125,7 @@ public class Recipe {
         if(category == null) return false;
 
         recipeCategoryList.add(category);
+        //category.setRecipeList(this);
         return true;
     }
 
@@ -134,9 +135,9 @@ public class Recipe {
         if(category == null) return false;
 
         recipeCategoryList.remove(category);
+        //  category.setRecipeList(null);
         return true;
     }
-
 
     @Override
     public boolean equals(Object o) {

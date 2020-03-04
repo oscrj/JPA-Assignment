@@ -63,7 +63,16 @@ public class RecipeCategory {
         if(recipe == null) return false;
 
         recipeList.add(recipe);
+        // recipe.setRecipeCategoryList(recipe);
+        return true;
+    }
 
+    public boolean removeRecipe(Recipe recipe){
+        if(this.recipeList == null) recipeList = new ArrayList<>();
+        if(recipe == null) return false;
+
+        recipeList.remove(recipe);
+        recipe.setRecipeCategoryList(null);
         return true;
     }
 

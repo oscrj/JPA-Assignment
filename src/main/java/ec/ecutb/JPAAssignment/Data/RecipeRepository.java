@@ -11,6 +11,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     List<Recipe> findByRecipeNameContainingIgnoreCase(String string);
 
+    /*
     @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeIngredientList recipeIngredient WHERE recipeIngredient.ingredient.ingredientName = :ingredientName")
     List<Recipe> findRecipeByIngredientName(@Param("ingredientName") String ingredientName);
 
@@ -19,5 +20,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategoryList recipeCategoryList WHERE recipeCategory.category = :category")
     List<Recipe> findRecipeByCategories(@Param("category") String...category);
+
+     */
 
 }
