@@ -44,7 +44,7 @@ public class Recipe {
         this(0, recipeName, null, null, null);
     }
 
-    Recipe() {}
+    public Recipe() {}
 
     public int getRecipeId() {
         return recipeId;

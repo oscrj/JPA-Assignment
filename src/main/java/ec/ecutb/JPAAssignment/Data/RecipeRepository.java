@@ -7,17 +7,18 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+
 public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     List<Recipe> findByRecipeNameContainingIgnoreCase(String string);
 
     @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeIngredientList recipeIngredient WHERE recipeIngredient.ingredient.ingredientName = :ingredientName")
-    List<Recipe> findRecipeByIngredientName(@Param("ingredientName") String ingredientName);
+    List<Recipe> findRecipeByIngredientNameIgnoreCase(@Param("ingredientName") String ingredientName);
 
-    @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategoryList recipeCategoryList WHERE recipeCategory.category = :category")
+    @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategoryList recipeCategory WHERE recipeCategory.category = :category")
     List<Recipe> findRecipeByCategory(@Param("category") String category);
 
-    @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategoryList recipeCategoryList WHERE recipeCategory.category IN :category")
-    List<Recipe> findRecipeByCategories(@Param("category") String...category);
+    @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeCategoryList recipeCategory WHERE recipeCategory.category IN :categories")
+    List<Recipe> findRecipeByCategories(@Param("categories") String...categories);
 
 }

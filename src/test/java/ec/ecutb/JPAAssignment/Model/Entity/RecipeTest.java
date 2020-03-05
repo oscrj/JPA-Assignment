@@ -14,7 +14,7 @@ public class RecipeTest {
     private Recipe testObject;
     private RecipeIngredient testIngredients;
     private RecipeCategory testCategory;
-
+    
     @BeforeEach
     void setUp(){
         testObject = new Recipe("TestRecipe", null, null, null);

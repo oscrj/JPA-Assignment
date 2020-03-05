@@ -38,7 +38,7 @@ public class RecipeIngredient {
         this(ingredient, amount, measurement, null);
     }
 
-    RecipeIngredient() {}
+    public RecipeIngredient() {}
 
     public String getRecipeIngredientId() {
         return recipeIngredientId;

@@ -23,7 +23,7 @@ public class Ingredient {
         this(0, ingredientName);
     }
 
-    Ingredient() {}
+    public Ingredient() {}
 
     public int getIngredientId() {
         return ingredientId;

@@ -30,7 +30,7 @@ public class RecipeCategory {
         this(0, category, null);
     }
 
-    RecipeCategory() {}
+    public RecipeCategory() {}
 
     public int getRecipeCategoryId() {
         return recipeCategoryId;

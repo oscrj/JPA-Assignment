@@ -23,7 +23,7 @@ public class RecipeInstruction {
         this.instructions = instructions;
     }
 
-    RecipeInstruction() {}
+    public RecipeInstruction() {}
 
     public String getInstructionId() {
         return instructionId;
