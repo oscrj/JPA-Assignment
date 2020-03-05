@@ -31,8 +31,7 @@ public class RecipeCreationImpl implements RecipeCreation {
         }
 
         Recipe recipe = new Recipe(recipeName, recipeIngredientList, instruction, recipeCategoryList);
-        recipeRepository.save(recipe);
-        return recipe;
+        return recipeRepository.save(recipe);
     }
 
     public static boolean hasNull(Object...objects){

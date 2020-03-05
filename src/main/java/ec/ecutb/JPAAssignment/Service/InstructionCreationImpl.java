@@ -23,7 +23,6 @@ public class InstructionCreationImpl implements InstructionCreation {
         }
 
         RecipeInstruction instruction = new RecipeInstruction(instructions);
-        instructionRepository.save(instruction);
-        return instruction;
+        return instructionRepository.save(instruction);
     }
 }

@@ -113,6 +113,7 @@ public class Recipe {
     public boolean removeRecipeIngredients(RecipeIngredient ingredient){
         if(this.recipeIngredientList == null) recipeIngredientList = new ArrayList<>();
         if(ingredient == null) return false;
+        if(!recipeIngredientList.contains(ingredient)) return false;
 
         recipeIngredientList.remove(ingredient);
         ingredient.setRecipe(null);
@@ -123,9 +124,9 @@ public class Recipe {
     public boolean addRecipeCategory(RecipeCategory category){
         if(this.recipeCategoryList == null) recipeCategoryList = new ArrayList<>();
         if(category == null) return false;
+        if(recipeCategoryList.contains(category)) return false;
 
         recipeCategoryList.add(category);
-        //category.setRecipeList(this);
         return true;
     }
 
@@ -133,9 +134,9 @@ public class Recipe {
     public boolean removeRecipeCategory(RecipeCategory category){
         if(this.recipeCategoryList == null) recipeCategoryList = new ArrayList<>();
         if(category == null) return false;
+        if(!recipeCategoryList.contains(category)) return false;
 
         recipeCategoryList.remove(category);
-        //  category.setRecipeList(null);
         return true;
     }
 

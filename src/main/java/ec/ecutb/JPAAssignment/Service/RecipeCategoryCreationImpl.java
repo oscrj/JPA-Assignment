@@ -21,7 +21,6 @@ public class RecipeCategoryCreationImpl implements RecipeCategoryCreation {
         if(category.isEmpty()) throw new RuntimeException("You have to enter category");
 
         RecipeCategory recipeCategory = new RecipeCategory(category);
-        categoryRepository.save(recipeCategory);
-        return recipeCategory;
+        return categoryRepository.save(recipeCategory);
     }
 }

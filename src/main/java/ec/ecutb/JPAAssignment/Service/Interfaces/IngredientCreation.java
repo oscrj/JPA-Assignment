@@ -7,4 +7,5 @@ public interface IngredientCreation {
 
     @Transactional(rollbackFor = RuntimeException.class)
     Ingredient createAndSave(String ingredientName);
+
 }
