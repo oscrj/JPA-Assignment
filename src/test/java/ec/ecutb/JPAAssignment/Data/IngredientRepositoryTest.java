@@ -1,6 +1,5 @@
 package ec.ecutb.JPAAssignment.Data;
 
-
 import ec.ecutb.JPAAssignment.Model.Entity.Ingredient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -18,7 +18,7 @@ public class Recipe {
             orphanRemoval = true,
             mappedBy = "recipe"
     )
-    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
+    private List<RecipeIngredient> recipeIngredientList;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "instruction_id")
@@ -30,7 +30,7 @@ public class Recipe {
     @JoinTable(name = "category_recipe",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_category_id"))
-    private List<RecipeCategory> recipeCategoryList = new ArrayList<>();
+    private List<RecipeCategory> recipeCategoryList;
 
     public Recipe(int recipeId, String recipeName, List<RecipeIngredient> recipeIngredientList, RecipeInstruction instruction, List<RecipeCategory> recipeCategoryList) {
         this.recipeId = recipeId;

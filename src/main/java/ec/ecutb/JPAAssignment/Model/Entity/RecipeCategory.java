@@ -18,7 +18,7 @@ public class RecipeCategory {
     @JoinTable(name = "category_recipe",
             joinColumns = @JoinColumn(name = "recipe_category_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-    List<Recipe> recipeList = new ArrayList<>();
+    List<Recipe> recipeList;
 
     public RecipeCategory(int recipeCategoryId, String category, List<Recipe> recipeList) {
         this.recipeCategoryId = recipeCategoryId;

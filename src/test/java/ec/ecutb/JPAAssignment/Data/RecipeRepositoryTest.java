@@ -56,6 +56,14 @@ public class RecipeRepositoryTest {
     }
 
     @Test
+    public void find_recipe_by_recipe_name(){
+        Recipe result = recipeRepository.findByRecipeName("Taco");
+
+        assertNotNull(result);
+        assertEquals("Taco", result.getRecipeName());
+    }
+
+    @Test
     public void find_recipes_by_string_containing_part_of_name(){
         List<Recipe> result = recipeRepository.findByRecipeNameContainingIgnoreCase("burg");
 
