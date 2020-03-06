@@ -18,7 +18,7 @@ public class Recipe {
             orphanRemoval = true,
             mappedBy = "recipe"
     )
-    private List<RecipeIngredient> recipeIngredientList;
+    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "instruction_id")
@@ -30,7 +30,7 @@ public class Recipe {
     @JoinTable(name = "category_recipe",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_category_id"))
-    private List<RecipeCategory> recipeCategoryList;
+    private List<RecipeCategory> recipeCategoryList = new ArrayList<>();
 
     public Recipe(int recipeId, String recipeName, List<RecipeIngredient> recipeIngredientList, RecipeInstruction instruction, List<RecipeCategory> recipeCategoryList) {
         this.recipeId = recipeId;
@@ -85,11 +85,14 @@ public class Recipe {
     }
 
     public List<RecipeCategory> getRecipeCategoryList() {
+        if(recipeCategoryList == null){
+            return new ArrayList<>();
+        }
         return recipeCategoryList;
     }
 
     public void setRecipeCategoryList(List<RecipeCategory> recipeCategoryList) {
-        if(this.recipeCategoryList == null) this.recipeCategoryList = new ArrayList<>();
+        if(recipeCategoryList == null) recipeCategoryList = new ArrayList<>();
         if(recipeCategoryList == null){
             recipeCategoryList.forEach(recipeCategory -> recipeCategory.setRecipeList(null));
         }else{
@@ -113,7 +116,6 @@ public class Recipe {
     public boolean removeRecipeIngredients(RecipeIngredient ingredient){
         if(this.recipeIngredientList == null) recipeIngredientList = new ArrayList<>();
         if(ingredient == null) return false;
-        if(!recipeIngredientList.contains(ingredient)) return false;
 
         recipeIngredientList.remove(ingredient);
         ingredient.setRecipe(null);
@@ -127,6 +129,7 @@ public class Recipe {
         if(recipeCategoryList.contains(category)) return false;
 
         recipeCategoryList.add(category);
+        category.getRecipeList().add(this);
         return true;
     }
 
@@ -134,9 +137,9 @@ public class Recipe {
     public boolean removeRecipeCategory(RecipeCategory category){
         if(this.recipeCategoryList == null) recipeCategoryList = new ArrayList<>();
         if(category == null) return false;
-        if(!recipeCategoryList.contains(category)) return false;
 
         recipeCategoryList.remove(category);
+        category.setCategory(null);
         return true;
     }
 

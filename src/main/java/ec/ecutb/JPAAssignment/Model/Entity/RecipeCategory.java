@@ -18,7 +18,7 @@ public class RecipeCategory {
     @JoinTable(name = "category_recipe",
             joinColumns = @JoinColumn(name = "recipe_category_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-    List<Recipe> recipeList;
+    List<Recipe> recipeList = new ArrayList<>();
 
     public RecipeCategory(int recipeCategoryId, String category, List<Recipe> recipeList) {
         this.recipeCategoryId = recipeCategoryId;
@@ -45,11 +45,12 @@ public class RecipeCategory {
     }
 
     public List<Recipe> getRecipeList() {
+        if(recipeList == null) return new ArrayList<>();
         return recipeList;
     }
 
     public void setRecipeList(List<Recipe> recipeList) {
-        if(this.recipeList == null) this.recipeList = new ArrayList<>();
+        if(recipeList == null) recipeList = new ArrayList<>();
         if(recipeList == null){
             recipeList.forEach(recipe -> recipe.setRecipeCategoryList(null));
         }else {
@@ -59,20 +60,21 @@ public class RecipeCategory {
     }
 
     public boolean addRecipe(Recipe recipe){
-        if(recipeList == null) recipeList = new ArrayList<>();
+        if(this.recipeList == null) recipeList = new ArrayList<>();
         if(recipe == null) return false;
         if(recipeList.contains(recipe)) return false;
 
         recipeList.add(recipe);
+        recipe.getRecipeCategoryList().add(this);
         return true;
     }
 
     public boolean removeRecipe(Recipe recipe){
         if(this.recipeList == null) recipeList = new ArrayList<>();
         if(recipe == null) return false;
-        if(!recipeList.contains(recipe)) return false;
 
         recipeList.remove(recipe);
+        recipe.setRecipeName(null);
         return true;
     }
 
