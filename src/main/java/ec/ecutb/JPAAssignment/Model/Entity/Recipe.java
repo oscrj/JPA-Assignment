@@ -93,11 +93,6 @@ public class Recipe {
 
     public void setRecipeCategoryList(List<RecipeCategory> recipeCategoryList) {
         if(recipeCategoryList == null) recipeCategoryList = new ArrayList<>();
-        if(recipeCategoryList == null){
-            recipeCategoryList.forEach(recipeCategory -> recipeCategory.setRecipeList(null));
-        }else{
-            recipeCategoryList.forEach(this::addRecipeCategory);
-        }
         this.recipeCategoryList = recipeCategoryList;
     }
 

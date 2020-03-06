@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
+    Recipe findByRecipeName(String recipeName);
+
     List<Recipe> findByRecipeNameContainingIgnoreCase(String string);
 
     @Query("SELECT r FROM Recipe r JOIN FETCH r.recipeIngredientList recipeIngredient WHERE recipeIngredient.ingredient.ingredientName = :ingredientName")

@@ -51,11 +51,6 @@ public class RecipeCategory {
 
     public void setRecipeList(List<Recipe> recipeList) {
         if(recipeList == null) recipeList = new ArrayList<>();
-        if(recipeList == null){
-            recipeList.forEach(recipe -> recipe.setRecipeCategoryList(null));
-        }else {
-            recipeList.forEach(this::addRecipe);
-        }
         this.recipeList = recipeList;
     }
 

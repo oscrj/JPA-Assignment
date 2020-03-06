@@ -20,6 +20,10 @@ public class RecipeCategoryCreationImpl implements RecipeCategoryCreation {
     public RecipeCategory saveAndCreate(String category) {
         if(category.isEmpty()) throw new RuntimeException("You have to enter category");
 
+        if(categoryRepository.findByCategory(category).getCategory().equals(category)){
+            throw new RuntimeException("This category already exists");
+        }
+
         RecipeCategory recipeCategory = new RecipeCategory(category);
         return categoryRepository.save(recipeCategory);
     }

@@ -22,6 +22,10 @@ public class IngredientCreationImpl implements IngredientCreation {
             throw new RuntimeException("You have to enter an ingredient");
         }
 
+        if(ingredientRepository.findByIngredientNameIgnoreCase(ingredientName).getIngredientName().equals(ingredientName)){
+            throw new RuntimeException("This ingredient already exist");
+        }
+
         Ingredient ingredient = new Ingredient(ingredientName);
         return ingredientRepository.save(ingredient);
     }

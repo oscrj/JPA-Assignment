@@ -22,6 +22,10 @@ public class InstructionCreationImpl implements InstructionCreation {
             throw new RuntimeException("You have to enter a instruction");
         }
 
+        if(instructionRepository.findByInstructions(instructions).getInstructions().equals(instructions)){
+            throw new RuntimeException("This instruction already exists");
+        }
+
         RecipeInstruction instruction = new RecipeInstruction(instructions);
         return instructionRepository.save(instruction);
     }

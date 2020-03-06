@@ -23,11 +23,14 @@ public class RecipeCreationImpl implements RecipeCreation {
         this.recipeRepository = recipeRepository;
     }
 
-
     @Override
     public Recipe saveAndCreate(String recipeName, List<RecipeIngredient> recipeIngredientList, RecipeInstruction instruction, List<RecipeCategory> recipeCategoryList) {
         if(hasNull(recipeName, recipeIngredientList, instruction, recipeCategoryList)){
             throw new RuntimeException("One or many parameters is null");
+        }
+
+        if(recipeRepository.findByRecipeName(recipeName).getRecipeName().equals(recipeName)){
+            throw new RuntimeException("This recipe already exists");
         }
 
         Recipe recipe = new Recipe(recipeName, recipeIngredientList, instruction, recipeCategoryList);
