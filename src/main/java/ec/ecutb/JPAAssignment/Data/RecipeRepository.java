@@ -6,11 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
-    Recipe findByRecipeName(String recipeName);
+    Optional<Recipe> findByRecipeName(String recipeName);
 
     List<Recipe> findByRecipeNameContainingIgnoreCase(String string);
 

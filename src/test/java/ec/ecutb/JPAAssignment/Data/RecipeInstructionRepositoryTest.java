@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -25,10 +27,10 @@ public class RecipeInstructionRepositoryTest {
 
     @Test
     public void find_by_instruction(){
-        RecipeInstruction result = instructionRepository.findByInstructions("Do something");
+        Optional<RecipeInstruction> result = instructionRepository.findByInstructions("Do something");
 
-        assertNotNull(result);
-        assertEquals("Do something", result.getInstructions());
+        assertNotNull(result.get());
+        assertEquals("Do something", result.get().getInstructions());
     }
 
 

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 public class IngredientRepositoryTest {
@@ -34,9 +34,10 @@ public class IngredientRepositoryTest {
 
     @Test
     public void find_ingredient_by_given_name(){
-        Ingredient result = ingredientRepository.findByIngredientNameIgnoreCase("testflour");
+        Optional<Ingredient> result = ingredientRepository.findByIngredientNameIgnoreCase("testflour");
 
-        assertEquals(result, testFlour);
+        assertTrue(result.isPresent());
+        assertEquals(testFlour, result.get());
     }
 
     @Test

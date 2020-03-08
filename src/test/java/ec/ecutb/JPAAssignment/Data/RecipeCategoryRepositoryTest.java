@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -25,10 +27,10 @@ public class RecipeCategoryRepositoryTest {
 
     @Test
     public void find_by_category(){
-        RecipeCategory result = categoryRepository.findByCategory("Mexican");
+        Optional<RecipeCategory> result = categoryRepository.findByCategory("Mexican");
 
-        assertNotNull(result);
-        assertEquals("Mexican", result.getCategory());
+        assertNotNull(result.get());
+        assertEquals("Mexican", result.get().getCategory());
     }
 
 }

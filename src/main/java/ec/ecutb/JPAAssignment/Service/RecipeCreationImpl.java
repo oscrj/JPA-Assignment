@@ -8,6 +8,7 @@ import ec.ecutb.JPAAssignment.Model.Entity.RecipeInstruction;
 import ec.ecutb.JPAAssignment.Service.Interfaces.RecipeCreation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,12 +25,13 @@ public class RecipeCreationImpl implements RecipeCreation {
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public Recipe saveAndCreate(String recipeName, List<RecipeIngredient> recipeIngredientList, RecipeInstruction instruction, List<RecipeCategory> recipeCategoryList) {
         if(hasNull(recipeName, recipeIngredientList, instruction, recipeCategoryList)){
             throw new RuntimeException("One or many parameters is null");
         }
 
-        if(recipeRepository.findByRecipeName(recipeName).getRecipeName().equals(recipeName)){
+        if(recipeRepository.findByRecipeName(recipeName).isPresent()){
             throw new RuntimeException("This recipe already exists");
         }
 

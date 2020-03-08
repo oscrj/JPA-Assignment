@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -28,9 +30,9 @@ public class RecipeIngredientRepositoryTest {
 
     @Test
     public void find_by_ingredient(){
-        RecipeIngredient result = ingredientRepository.findByIngredient(testIngredient);
+       Optional<RecipeIngredient> result = ingredientRepository.findByIngredient(testIngredient);
 
-        assertNotNull(result);
-        assertEquals(testIngredient, result.getIngredient());
+        assertNotNull(result.get());
+        assertEquals(testIngredient, result.get().getIngredient());
     }
 }

@@ -5,6 +5,7 @@ import ec.ecutb.JPAAssignment.Model.Entity.RecipeInstruction;
 import ec.ecutb.JPAAssignment.Service.Interfaces.InstructionCreation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InstructionCreationImpl implements InstructionCreation {
@@ -17,12 +18,13 @@ public class InstructionCreationImpl implements InstructionCreation {
     }
 
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public RecipeInstruction createAndSave(String instructions) {
         if(instructions.isEmpty()){
             throw new RuntimeException("You have to enter a instruction");
         }
 
-        if(instructionRepository.findByInstructions(instructions).getInstructions().equals(instructions)){
+        if(instructionRepository.findByInstructions(instructions).isPresent()){
             throw new RuntimeException("This instruction already exists");
         }
 
