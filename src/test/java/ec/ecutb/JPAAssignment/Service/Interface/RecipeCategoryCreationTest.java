@@ -29,4 +29,8 @@ public class RecipeCategoryCreationTest {
         assertNotNull(result);
         assertEquals(result, categoryRepository.findByCategory("testCategory").get());
     }
+
+    /**
+     * Add test to check if existing category doesn't get saved and created.
+     */
 }

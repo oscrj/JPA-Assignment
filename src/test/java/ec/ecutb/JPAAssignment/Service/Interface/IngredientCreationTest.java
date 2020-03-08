@@ -27,4 +27,8 @@ public class IngredientCreationTest {
         assertNotNull(result);
         assertEquals(result, ingredientRepository.findByIngredientNameIgnoreCase("testIngredientName").get());
     }
+
+    /**
+     * Add test to check if existing ingredient doesn't get saved and created
+     */
 }

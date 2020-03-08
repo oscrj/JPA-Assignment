@@ -27,4 +27,8 @@ public class InstructionCreationTest {
         assertNotNull(result);
         assertEquals(result, instructionRepository.findByInstructions("testInstruction").get());
     }
+
+    /**
+     * Add test to check if existing instruction doesn't get saved and created
+     */
 }
