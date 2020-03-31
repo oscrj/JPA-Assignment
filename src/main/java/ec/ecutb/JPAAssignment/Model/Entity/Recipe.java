@@ -64,14 +64,8 @@ public class Recipe {
 
     public void setRecipeIngredientList(List<RecipeIngredient> recipeIngredientList) {
         //  If recipeIngredientList is empty, create an Arraylist.
-        if(this.recipeIngredientList == null) recipeIngredientList = new ArrayList<>();
-
-        if(recipeIngredientList != null){
-            // Add recipe ingredients to List by calling addRecipeIngredients.
-            recipeIngredientList.forEach(this::addRecipeIngredients);
-        }else{
-            // If recipeIngredientList is null, Set recipe to null in ingredients.
-            recipeIngredientList.forEach(ingredient -> ingredient.setRecipe(null));
+        if(this.recipeIngredientList == null) {
+            recipeIngredientList = new ArrayList<>();
         }
         this.recipeIngredientList = recipeIngredientList;
     }
